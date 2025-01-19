@@ -62,21 +62,25 @@ CREATE TABLE IF NOT EXISTS Tournament_Participants (
     )
 );
 
--- 建立 Team_Members 表
+-- 修改 Team_Members 表
 CREATE TABLE IF NOT EXISTS Team_Members (
     member_id INT AUTO_INCREMENT PRIMARY KEY, -- 自動遞增的主鍵
     register_id INT NOT NULL, -- 參考 Tournament_Participants 的 register_id
     member_name VARCHAR(255) NOT NULL, -- 隊員名稱
-    FOREIGN KEY (register_id) REFERENCES Tournament_Participants(register_id) -- 外鍵約束
+    FOREIGN KEY (register_id) REFERENCES Tournament_Participants(register_id) 
+        ON DELETE CASCADE -- 刪除 Tournament_Participants 中的記錄時，會自動刪除 Team_Members 中的對應記錄
+        ON UPDATE CASCADE -- 更新 Tournament_Participants 中的 register_id 時，會自動更新 Team_Members 中的 register_id
 );
 
--- 建立 Judges 表
+-- 修改 Judges 表
 CREATE TABLE Judges (
-    judge_id INT PRIMARY KEY, -- 對應 tournament_participants 的 register_id
+    judge_id INT PRIMARY KEY, -- 對應 Tournament_Participants 的 register_id
     dietary_preference ENUM('葷食', '素食') NOT NULL, -- 飲食習慣，限制為 "葷食" 或 "素食"
     allergens VARCHAR(255), -- 過敏原（以逗號分隔）
     session_number INT DEFAULT 0, -- 參與的場次數量
-    FOREIGN KEY (judge_id) REFERENCES Tournament_Participants(register_id) -- 關聯 Tournament_Participants 的 register_id
+    FOREIGN KEY (judge_id) REFERENCES Tournament_Participants(register_id) 
+        ON DELETE CASCADE -- 刪除 Tournament_Participants 中的記錄時，會自動刪除 Judges 中的對應記錄
+        ON UPDATE CASCADE -- 更新 Tournament_Participants 中的 register_id 時，會自動更新 Judges 中的 register_id
 );
 
 -- 建立 Sessions 表
