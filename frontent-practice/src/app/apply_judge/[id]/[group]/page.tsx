@@ -139,7 +139,7 @@ export default function IndividualForm() {
 
           {/* 性別 */}
           <div>
-            <label className="block text-gray-700 mb-1">性別</label>
+            <label className="block text-gray-700 mb-1">生理性別</label>
             <div className="flex gap-4">
               <label className="flex items-center">
                 <input
