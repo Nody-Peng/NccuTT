@@ -85,7 +85,7 @@ export default function Profile() {
     const validStatuses = ["報名中", "進行中", "已結束"];
     return validStatuses.includes(status?.trim()) ? status.trim() : "報名中";
   };
-  
+
   // 處理更新比賽狀態的函數
   const handleStatusChange = async (tournamentId, newStatus) => {
     try {
@@ -175,8 +175,19 @@ export default function Profile() {
       </div>
 
       {/* 個人資訊區塊 */}
-      <div className="w-full max-w-4xl bg-white p-8 mt-16 rounded-lg shadow-lg">
-        <div className="space-y-4">
+      <div className="w-full max-w-4xl bg-white p-8 mt-16 rounded-lg shadow-lg relative">
+        {/* 返回按鈕 */}
+        <button
+          onClick={() => (window.location.href = "/competition")}
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          aria-label="返回"
+        >
+          <span className="text-xl font-bold">{`< 返回`}</span>
+        </button>
+
+        <div className="space-y-4 mt-8">
+          {" "}
+          {/* 增加額外的 top padding */}
           <div className="flex items-center justify-between">
             <span className="text-gray-600 font-semibold">Name</span>
             <span className="text-gray-800">{userInfo.name}</span>
@@ -286,7 +297,9 @@ export default function Profile() {
                   </th>
                   {/* ✅ 狀態欄位：只有主辦方才會看到 */}
                   {userInfo.is_organizer && (
-                    <th className="border-b p-4 font-semibold text-gray-700">狀態</th>
+                    <th className="border-b p-4 font-semibold text-gray-700">
+                      狀態
+                    </th>
                   )}
                 </tr>
               </thead>
@@ -305,15 +318,20 @@ export default function Profile() {
                       {tournament.location || "待定"}
                     </td>
                     <td className="border-b p-4">
-                      {String(tournament.organizer_id) === String(userInfo.user_id) &&
+                      {String(tournament.organizer_id) ===
+                        String(userInfo.user_id) &&
                       tournament.status === "進行中" ? (
-                        <Link href={`/arrange_competition/${tournament.tournament_id}`}>
+                        <Link
+                          href={`/arrange_competition/${tournament.tournament_id}`}
+                        >
                           <span className="text-green-500 cursor-pointer hover:underline">
                             安排賽程
                           </span>
                         </Link>
-                      ) : tournament.status === "進行中"? (
-                        <Link href={`/search_competition/${tournament.tournament_id}`}>
+                      ) : tournament.status === "進行中" ? (
+                        <Link
+                          href={`/search_competition/${tournament.tournament_id}`}
+                        >
                           <span className="text-blue-500 cursor-pointer hover:underline">
                             查看賽程
                           </span>
@@ -323,13 +341,17 @@ export default function Profile() {
                       )}
                     </td>
                     {userInfo.is_organizer ? (
-                      String(tournament.organizer_id) === String(userInfo.user_id) ? (
+                      String(tournament.organizer_id) ===
+                      String(userInfo.user_id) ? (
                         <td className="border-b p-4">
                           <select
                             className="p-2 border rounded"
                             value={getStatusValue(tournament.status)}
                             onChange={(e) =>
-                              handleStatusChange(tournament.tournament_id, e.target.value)
+                              handleStatusChange(
+                                tournament.tournament_id,
+                                e.target.value
+                              )
                             }
                           >
                             <option value="報名中">報名中</option>

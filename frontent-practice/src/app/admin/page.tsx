@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
+  const router = useRouter(); // 引入 useRouter
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -124,8 +126,15 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center">
       <div className="w-full h-40 bg-[url('/DBMS_Background.png')] bg-cover bg-center rounded-b-3xl shadow-md"></div>
 
-      <div className="w-full max-w-4xl bg-white p-8 mt-12 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-center mb-8">管理使用者</h1>
+      <div className="w-full max-w-4xl bg-white p-8 mt-12 rounded-lg shadow-lg relative">
+        {/* 返回按鈕 */}
+        <button
+          onClick={() => router.push("/profile")}
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          aria-label="返回"
+        >
+          <span className="text-xl font-bold">{`< 返回`}</span>
+        </button>
 
         {/* 申請中的用戶 */}
         <div className="mt-8">
@@ -134,9 +143,15 @@ export default function AdminPage() {
             <table className="w-full text-left border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="border-b p-4 font-semibold text-gray-700">姓名</th>
-                  <th className="border-b p-4 font-semibold text-gray-700">電子郵件</th>
-                  <th className="border-b p-4 font-semibold text-gray-700">操作</th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    姓名
+                  </th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    電子郵件
+                  </th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    操作
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -174,10 +189,18 @@ export default function AdminPage() {
             <table className="w-full text-left border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="border-b p-4 font-semibold text-gray-700">姓名</th>
-                  <th className="border-b p-4 font-semibold text-gray-700">電子郵件</th>
-                  <th className="border-b p-4 font-semibold text-gray-700">角色</th>
-                  <th className="border-b p-4 font-semibold text-gray-700">操作</th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    姓名
+                  </th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    電子郵件
+                  </th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    角色
+                  </th>
+                  <th className="border-b p-4 font-semibold text-gray-700">
+                    操作
+                  </th>
                 </tr>
               </thead>
               <tbody>
