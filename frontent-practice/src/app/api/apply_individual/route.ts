@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     const [result] = await connection.execute(
       `
       INSERT INTO Tournament_Participants (
-        user_id, name, email, phone, tournament_id, division, category, team_name, event_type, registration_time
+        user_id, name, email, gender, phone, tournament_id, division, category, team_name, event_type, registration_time
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
       `,
       [

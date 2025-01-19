@@ -3,11 +3,13 @@ import { NextResponse } from "next/server";
 
 // ✅ 幫助函數：讀取比賽資料
 async function fetchCompetitionData(connection, tournament_id, division, event_type) {
+  const isTeamEvent = !["男子單打", "女子單打"].includes(event_type); // 判斷是否為團體賽
+
   const [matches] = await connection.execute(
     `SELECT 
        m.match_id,
-       p1.name AS participantA,
-       p2.name AS participantB,
+       ${isTeamEvent ? "p1.team_name" : "p1.name"} AS participantA,
+       ${isTeamEvent ? "p2.team_name" : "p2.name"} AS participantB,
        j.name AS judgeName,
        m.status,
        m.session_id,

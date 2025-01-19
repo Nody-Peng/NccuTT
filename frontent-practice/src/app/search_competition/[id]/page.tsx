@@ -20,7 +20,7 @@ const CompetitionCard = ({ title, description, link, isPublished }) => {
     <div className="max-w-sm w-full h-64 mx-auto flex flex-col justify-center items-center rounded-xl overflow-hidden shadow-lg border-2 border-gray-300 bg-gray-100 cursor-not-allowed">
       <h2 className="text-2xl font-extrabold text-gray-500 mb-3">{title}</h2>
       <p className="text-gray-500 text-sm leading-relaxed text-center">
-        尚未發布
+        尚未開放
       </p>
     </div>
   );
@@ -30,7 +30,6 @@ const CompetitionCard = ({ title, description, link, isPublished }) => {
 const SearchCompetition = () => {
   const { id } = useParams(); // 取得比賽 ID
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [publishStatus, setPublishStatus] = useState({}); // ✅ 儲存每個組別的發布狀態
 
   // ✅ 組別與對應 API 路徑
@@ -50,36 +49,43 @@ const SearchCompetition = () => {
   ];
 
   // ✅ 載入每個組別的發布狀態
-useEffect(() => {
-  const fetchPublishStatus = async () => {
-    try {
+  useEffect(() => {
+    const fetchPublishStatus = async () => {
       const statusData = {};
 
       for (const competition of competitions) {
-        const res = await fetch(`/api/competition_schedule/publish/${id}?division=${competition.division}`);
-        if (!res.ok) {
-          throw new Error(`查詢 ${competition.division} 失敗`);
+        try {
+          const res = await fetch(
+            `/api/competition_schedule/publish/${id}?division=${competition.division}`
+          );
+
+          if (!res.ok) {
+            throw new Error(`查詢 ${competition.division} 失敗`);
+          }
+
+          const data = await res.json();
+
+          console.log(
+            `🔍 ${competition.division} 組別發布狀態:`,
+            data.is_published
+          );
+
+          // ✅ 更新對應的發布狀態
+          statusData[competition.division] =
+            data.is_published === 1 || data.is_published === true;
+        } catch (err) {
+          console.error(`錯誤: ${competition.division} 加載失敗`, err);
+          // 發生錯誤時，將該組別標記為未發布
+          statusData[competition.division] = false;
         }
-
-        const data = await res.json();
-
-        console.log(`🔍 ${competition.division} 組別發布狀態:`, data.is_published);
-
-        // ✅ 修正判斷邏輯，避免資料型別錯誤
-        statusData[competition.division] = data.is_published === 1 || data.is_published === true;
       }
 
       setPublishStatus(statusData);
-    } catch (err) {
-      console.error("載入數據錯誤:", err);
-      setError("無法載入賽程資料，請稍後再試。");
-    } finally {
       setLoading(false);
-    }
-  };
+    };
 
-  fetchPublishStatus();
-}, [id]);
+    fetchPublishStatus();
+  }, [id]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
@@ -88,8 +94,6 @@ useEffect(() => {
 
         {loading ? (
           <p className="text-center text-gray-600">載入中...</p>
-        ) : error ? (
-          <p className="text-center text-red-500">{error}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-center items-center">
             {competitions.map((competition) => (

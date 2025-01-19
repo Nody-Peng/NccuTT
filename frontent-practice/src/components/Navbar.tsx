@@ -15,10 +15,12 @@ export default function Navbar() {
 
   // 如果使用者未登入，Navbar 不顯示
   if (!session) {
+    console.log("User is not authenticated");
     return null;
   }
 
   // 使用者已登入，顯示 Navbar
+  console.log("User is authenticated:", session);
   return (
     <nav className="fixed top-0 left-0 w-full bg-gray-50 shadow-md z-50">
       {/* 第一列：搜尋欄與圖示 */}

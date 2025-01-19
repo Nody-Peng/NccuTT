@@ -63,6 +63,21 @@ export default function IndividualForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 確認所有必填欄位
+    const requiredFields = [
+      "name",
+      "email",
+      "gender",
+      "phone",
+      "dietary_preference",
+    ];
+    const missingFields = requiredFields.filter((field) => !formData[field]);
+
+    if (missingFields.length > 0) {
+      alert("請確保所有必填欄位均已填寫：" + missingFields.join(", "));
+      return;
+    }
+
     const payload = {
       user_id: session?.user?.id || "mock_user_id",
       name: formData.name,
@@ -212,11 +227,11 @@ export default function IndividualForm() {
 
           {/* 過敏原 */}
           <div>
-            <label className="block text-gray-700 mb-1">過敏原</label>
+            <label className="block text-gray-700 mb-1">請問您是否有任何食物過敏？如果有，請列出過敏原（例如：花生、牛奶、蛋）。</label>
             <input
               type="text"
               name="allergens"
-              placeholder="請輸入您的過敏原（以逗號分隔）"
+              placeholder="請輸入您的過敏原（以頓號分隔）"
               value={formData.allergens}
               onChange={handleChange}
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"

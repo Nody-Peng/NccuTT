@@ -50,7 +50,16 @@ const CompetitionSociety = () => {
   
     const checkAndFetchData = async () => {
       if (isProcessing) return;
-  
+
+      // 清空舊數據
+      setMatches([]);
+      setCommonInfo({
+        competitionDates: [],
+        sessionTimes: [],
+        venues: [],
+        tables: [],
+      });
+      
       setLoading(true);
       setError(null);
       setIsProcessing(true);
@@ -72,8 +81,9 @@ const CompetitionSociety = () => {
           throw new Error(checkData.error);
         }
   
-        if (checkData.isPublished) {
-          setIsPublished(true);
+        // 更新發布狀態
+        if (!isCancelled) {
+          setIsPublished(checkData.isPublished || false);
         }
   
         const res = await fetch(`/api/competition_schedule/${id}`, {

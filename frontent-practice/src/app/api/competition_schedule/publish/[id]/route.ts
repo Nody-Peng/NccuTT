@@ -9,8 +9,8 @@ export async function GET(req, { params }) {
     const { searchParams } = new URL(req.url);
     const division = searchParams.get("division");  // 組別
 
-    if (!id) {
-      return NextResponse.json({ error: "缺少必要參數：tournament_id" }, { status: 400 });
+    if (!id || !division) {
+      return NextResponse.json({ error: "缺少必要參數" }, { status: 400 });
     }
 
     // ✅ 建立資料庫連線

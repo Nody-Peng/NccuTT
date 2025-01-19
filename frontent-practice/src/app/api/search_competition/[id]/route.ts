@@ -23,12 +23,12 @@ export async function GET(req: Request, context: { params: { id?: string } }) {
 
     // ✅ 查詢賽程類別
     const [collegeSchedule] = await connection.execute(
-      `SELECT type FROM competition_schedule WHERE tournament_id = ? AND division = '大專組'`,
+      `SELECT type FROM Matches WHERE tournament_id = ? AND division = '大專組'`,
       [tournamentId]
     );
 
     const [societySchedule] = await connection.execute(
-      `SELECT type FROM competition_schedule WHERE tournament_id = ? AND division = '社會組'`,
+      `SELECT type FROM Matches WHERE tournament_id = ? AND division = '社會組'`,
       [tournamentId]
     );
 

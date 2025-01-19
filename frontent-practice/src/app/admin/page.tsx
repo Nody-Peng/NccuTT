@@ -129,11 +129,11 @@ export default function AdminPage() {
       <div className="w-full max-w-4xl bg-white p-8 mt-12 rounded-lg shadow-lg relative">
         {/* 返回按鈕 */}
         <button
-          onClick={() => router.push("/profile")}
-          className="absolute top-2 left-2 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          onClick={() => (window.location.href = "/competition")}
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           aria-label="返回"
         >
-          <span className="text-xl font-bold">{`< 返回`}</span>
+          返回
         </button>
 
         {/* 申請中的用戶 */}
