@@ -10,11 +10,11 @@ export default function IndividualForm() {
   const params = useParams(); // 獲取動態路由參數
   const eventId = params.id; // 活動 ID
   const division =
-  params.group === "college"
-    ? "大專組"
-    : params.group === "society"
-    ? "社會組"
-    : "裁判組"; // 動態組別
+    params.group === "college"
+      ? "大專組"
+      : params.group === "society"
+      ? "社會組"
+      : "裁判組"; // 動態組別
 
   const [formData, setFormData] = useState({
     name: session?.user?.name || "",
@@ -22,9 +22,8 @@ export default function IndividualForm() {
     phone: "",
     gender: "",
     dietary_preference: "", // 新增: 飲食習慣
-    allergens: "",          // 新增: 過敏原
-  });  
-
+    allergens: "", // 新增: 過敏原
+  });
 
   const [tournament, setTournament] = useState({
     name: "",
@@ -73,8 +72,8 @@ export default function IndividualForm() {
       tournament_id: eventId,
       division: division,
       dietary_preference: formData.dietary_preference,
-      allergens: formData.allergens
-    };    
+      allergens: formData.allergens,
+    };
 
     try {
       const response = await fetch("/api/apply_judge", {
@@ -89,7 +88,7 @@ export default function IndividualForm() {
       } else {
         const errorData = await response.json();
         alert(`報名失敗：${errorData.message || "請稍後再試。"}`);
-      }  
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("提交時發生錯誤，請稍後再試。");
@@ -99,6 +98,14 @@ export default function IndividualForm() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md relative">
+        {/* 返回按鈕 */}
+        <button
+          onClick={() => router.back()} // 返回上一頁
+          className="absolute top-4 left-4 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          aria-label="返回"
+        >
+          <span className="text-xl font-bold">{`< 返回`}</span>
+        </button>
         {/* 報名活動資訊 */}
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">

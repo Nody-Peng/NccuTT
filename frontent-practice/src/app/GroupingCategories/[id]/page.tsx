@@ -30,7 +30,7 @@ const GroupCard = ({
 
 // ✅ 組別選擇頁面
 const GroupSelection = () => {
-  const { id } = useParams();  // 讀取動態路由參數 (tournament_id)
+  const { id } = useParams(); // 讀取動態路由參數 (tournament_id)
   const [groupData, setGroupData] = useState({
     college: { individual: 0, team: 0 },
     society: { individual: 0, team: 0 },
@@ -78,7 +78,20 @@ const GroupSelection = () => {
 
   return (
     <div className="min-h-screen p-12">
-      <h1 className="text-3xl font-bold mb-6 text-center">選擇組別</h1>
+      {/* 返回按鈕與標題容器 */}
+      <div className="relative mb-6">
+        {/* 返回按鈕 */}
+        <button
+          onClick={() => (window.location.href = "/competition")}
+          className="absolute top-0 left-0 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          aria-label="返回"
+        >
+          <span className="text-xl font-bold">{`< 返回`}</span>
+        </button>
+
+        {/* 標題 */}
+        <h1 className="text-3xl font-bold text-center">選擇組別</h1>
+      </div>
 
       {loading ? (
         <p className="text-center text-gray-600">載入中...</p>

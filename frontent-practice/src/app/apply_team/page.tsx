@@ -42,26 +42,36 @@ export default function TeamForm() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-md relative">
-        {/* 報名類別下拉選單 */}
-        <div className="absolute top-4 left-4">
-          <label htmlFor="category" className="text-gray-700 mr-2">
-            報名類別：
-          </label>
-          <select
-            id="category"
-            value={category}
-            onChange={handleCategoryChange}
-            className="p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100"
-          >
-            <option value="團體賽">團體賽</option>
-            <option value="個人賽">個人賽</option>
-          </select>
-        </div>
+        {/* 返回按鈕 */}
+        <button
+          onClick={() => router.back()} // 返回上一頁
+          className="absolute top-4 left-4 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          aria-label="返回"
+        >
+          <span className="text-xl font-bold">{`< 返回`}</span>
+        </button>
 
-        {/* 標題 */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          {category}報名表
-        </h2>
+        {/* 報名類別與標題 */}
+        <div className="flex items-center justify-between mb-6">
+          {/* 報名類別下拉選單 */}
+          <div className="flex items-center">
+            <label htmlFor="category" className="text-gray-700 mr-2">
+              報名類別：
+            </label>
+            <select
+              id="category"
+              value={category}
+              onChange={handleCategoryChange}
+              className="p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100"
+            >
+              <option value="團體賽">團體賽</option>
+              <option value="個人賽">個人賽</option>
+            </select>
+          </div>
+
+          {/* 標題 */}
+          <h2 className="text-2xl font-bold text-gray-800">{category}報名表</h2>
+        </div>
 
         {/* 表單 */}
         <form className="space-y-6" onSubmit={handleSubmit}>
