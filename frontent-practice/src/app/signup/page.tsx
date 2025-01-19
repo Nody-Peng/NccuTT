@@ -13,9 +13,9 @@ export default function Signup() {
   const router = useRouter();
 
   const handleGoogleSignup = () => {
-    signIn("google", { callbackUrl: "/competition" });  // ✅ 成功後跳轉到 /competition
+    signIn("google", { callbackUrl: "/competition" }); // ✅ 成功後跳轉到 /competition
   };
-  
+
   // 處理表單提交
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ export default function Signup() {
         setError(data.error || "註冊失敗，請再試一次。");
       } else {
         setSuccess("註冊成功！正在為您登入...");
-        
+
         // 自動登入
         const result = await signIn("credentials", {
           email,
@@ -70,7 +70,9 @@ export default function Signup() {
 
         {/* 成功與錯誤提示 */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        {success && <p className="text-green-500 text-center mb-4">{success}</p>}
+        {success && (
+          <p className="text-green-500 text-center mb-4">{success}</p>
+        )}
 
         {/* 表單 */}
         <form onSubmit={handleSubmit}>
@@ -142,6 +144,13 @@ export default function Signup() {
           使用 Google 登入
         </button>
 
+        {/* 已有帳號連結 */}
+        <p className="text-gray-600 text-center mt-6 text-sm">
+          已經有帳號嗎？{" "}
+          <a href="/login" className="text-blue-500 hover:underline">
+            立即登入
+          </a>
+        </p>
       </div>
     </div>
   );

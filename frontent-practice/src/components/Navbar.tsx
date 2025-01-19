@@ -35,8 +35,11 @@ export default function Navbar() {
         <div className="flex items-center space-x-4">
           {/* 使用者頭像 */}
           <Link href="/profile">
-            <button className="text-gray-600 hover:text-gray-400 transition duration-300">
-              <FaUserCircle size={24} />
+            <button className="relative group w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 shadow-sm hover:shadow-md transition duration-300 flex items-center justify-center">
+              <FaUserCircle
+                size={28}
+                className="text-gray-600 group-hover:text-black transition duration-300"
+              />
             </button>
           </Link>
         </div>
