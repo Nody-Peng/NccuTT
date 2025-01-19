@@ -179,10 +179,10 @@ export default function Profile() {
         {/* 返回按鈕 */}
         <button
           onClick={() => (window.location.href = "/competition")}
-          className="absolute top-2 left-2 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           aria-label="返回"
         >
-          <span className="text-xl font-bold">{`< 返回`}</span>
+          返回
         </button>
 
         <div className="space-y-4 mt-8">
