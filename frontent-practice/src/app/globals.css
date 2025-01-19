@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --background-image: url("/DBMS_Background.png"); /* 預設背景圖片 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --background-image: url("/DBMS_Background.png"); /* 暗黑模式背景圖片 */
+  }
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background); /* 設定背景顏色 */
+  background-image: var(--background-image); /* 設定背景圖片 */
+  background-size: cover; /* 背景圖片完整覆蓋 */
+  background-position: center; /* 背景圖片置中 */
+  background-repeat: no-repeat; /* 防止圖片重複 */
+  min-height: 100vh; /* 確保背景覆蓋整個畫面 */
+  font-family: Arial, Helvetica, sans-serif;
+}
