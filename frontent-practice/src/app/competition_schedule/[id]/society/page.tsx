@@ -124,7 +124,7 @@ const CompetitionSociety = () => {
     };
   }, [id, selectedCategory, subCategory]);      
 
-  const handleSave = async () => {
+  const handleSave = async (reloadAfterSave = true) => {
     try {
       const updatedData = matches.map((match, index) => ({
         match_id: match.match_id,
@@ -143,14 +143,19 @@ const CompetitionSociety = () => {
   
       if (response.ok) {
         alert("儲存成功！");
-        window.location.reload();
+        if (reloadAfterSave) {
+          window.location.reload();
+        }
+        return true; // 儲存成功
       } else {
         const errorData = await response.json();
         alert(`儲存失敗：${errorData.error}`);
+        return false; // 儲存失敗
       }
     } catch (err) {
       console.error("儲存失敗:", err);
       alert("儲存時發生錯誤，請稍後再試");
+      return false;
     }
   };
   
@@ -158,6 +163,13 @@ const CompetitionSociety = () => {
     if (!window.confirm("確定要發布賽程嗎？發布後將無法撤銷！")) return;
   
     try {
+      // 儲存比賽資料
+      const saveResult = await handleSave(false); // 在發布前執行儲存
+      if (!saveResult) {
+        alert("儲存失敗，無法繼續發布！");
+        return; // 停止發布操作
+      }
+
       const response = await fetch(`/api/competition_schedule/${id}/publish`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
