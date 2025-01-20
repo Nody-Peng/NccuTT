@@ -48,7 +48,7 @@ export async function GET(req: Request) {
               t.name AS tournament_name, t.start_date, t.end_date, t.location, t.user_id AS organizer_id
        FROM tournament_participants tp
        JOIN tournaments t ON tp.tournament_id = t.tournament_id
-       WHERE tp.user_id = ?`,
+       WHERE tp.user_id = ? AND t.status = '報名中'`,
       [userId]
     );
 
@@ -58,7 +58,7 @@ export async function GET(req: Request) {
               t.location, t.start_date, t.end_date, t.description, t.status
        FROM tournaments t
        JOIN tournament_participants tp ON t.tournament_id = tp.tournament_id
-       WHERE tp.user_id = ?`,
+       WHERE tp.user_id = ? AND t.status = '進行中'`,
       [userId]
     );
 
