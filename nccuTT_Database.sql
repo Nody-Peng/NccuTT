@@ -137,7 +137,6 @@ CREATE TABLE IF NOT EXISTS Venue_Tables (
     venue_id INT NOT NULL, -- 參考 Venues 的 venue_id
     table_number INT NOT NULL, -- 桌號
     FOREIGN KEY (venue_id) REFERENCES Venues(venue_id), -- venue_id 外鍵約束
-    FOREIGN KEY (table_number) REFERENCES Tournaments(num_of_table)
 );
 
 -- 建立 Matches 表
