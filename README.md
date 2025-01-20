@@ -1,6 +1,5 @@
 # 誰敢跟我桌隊
 
-作者: 彭宗淳、林佳瑢
 ![誰敢跟我桌隊](https://github.com/Nody-Peng/NccuTT/blob/main/frontend/public/nccuTT_home.png?raw=true)
 
 # 系統簡介
