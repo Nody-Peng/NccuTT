@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS Venue_Tables (
     table_id INT AUTO_INCREMENT PRIMARY KEY, -- 自動遞增的主鍵
     venue_id INT NOT NULL, -- 參考 Venues 的 venue_id
     table_number INT NOT NULL, -- 桌號
-    FOREIGN KEY (venue_id) REFERENCES Venues(venue_id), -- venue_id 外鍵約束
+    FOREIGN KEY (venue_id) REFERENCES Venues(venue_id) -- venue_id 外鍵約束
 );
 
 -- 建立 Matches 表
