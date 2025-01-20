@@ -29,15 +29,15 @@ CREATE TABLE password_reset_tokens (
 
 -- 建立 Tournaments 表
 CREATE TABLE IF NOT EXISTS Tournaments (
-    tournament_id INT NOT NULL AUTO_INCREMENT,  -- 比賽編號，自動遞增
+    tournament_id INT AUTO_INCREMENT,           -- 比賽編號，自動遞增
     user_id VARCHAR(255) NOT NULL,              -- 主辦者 ID (來自 Users 表)
     name VARCHAR(100) NOT NULL,                 -- 比賽名稱
-    location VARCHAR(100),                      -- 比賽地點
+    location VARCHAR(100) NOT NULL,             -- 比賽地點
     enroll_date DATE NOT NULL,					-- 報名截止日期
     start_date DATE NOT NULL,                   -- 比賽開始日期
     end_date DATE NOT NULL,                     -- 比賽結束日期
     description TEXT,                           -- 比賽描述
-    num_of_table INT,
+    num_of_table INT NOT NULL,
     status ENUM('報名中', '進行中', '已結束') DEFAULT '報名中', -- 比賽狀態，預設為 '報名中'
     PRIMARY KEY (tournament_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  -- 外鍵連接到 Users 表
