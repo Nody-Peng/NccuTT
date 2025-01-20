@@ -23,7 +23,8 @@ CREATE TABLE password_reset_tokens (
   email VARCHAR(100) NOT NULL,
   token VARCHAR(255) NOT NULL,
   expires_at DATETIME NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (email) REFERENCES Users(email)
 );
 
 -- 建立 Tournaments 表
@@ -157,6 +158,8 @@ CREATE TABLE IF NOT EXISTS Matches (
 
   UNIQUE KEY unique_table_session (table_id, session_id),
   FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (division) REFERENCES Tournament_Participants(division) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (event_type) REFERENCES Tournament_Participants(event_type) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (player1_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (player2_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (judge_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -193,61 +196,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-INSERT INTO Users (user_id, name, email, password) VALUES
-('user6', '林一', 'linyi@example.com', 'password123'),
-('user1', '張三', 'zhangsan@example.com', 'password123'),
-('user2', '李四', 'lisi@example.com', 'password123'),
-('user3', '王五', 'wangwu@example.com', 'password123'),
-('user4', '趙六', 'zhaoliu@example.com', 'password123'),
-('user5', '錢七', 'qianqi@example.com', 'password123');
-
-INSERT INTO Tournament_Participants (
-    user_id, name, email, gender, phone, tournament_id, division, category, team_name, event_type
-) VALUES
-('user6', '林一', 'linyi@example.com', '男', '0912345678', 1, '裁判組', NULL, NULL, NULL),
-('user1', '張三', 'zhangsan@example.com', '男', '0912345679', 1, '大專組', '個人賽', NULL, '男子單打'),
-('user2', '李四', 'lisi@example.com', '男', '0912345679', 1, '大專組', '個人賽', NULL, '男子單打'),
-('user3', '王五', 'wangwu@example.com', '男', '0912345680', 1, '大專組', '個人賽', NULL, '男子單打'),
-('user4', '趙六', 'zhaoliu@example.com', '男', '0912345681', 1, '大專組', '個人賽', NULL, '男子單打'),
-('user5', '錢七', 'qianqi@example.com', '男', '0912345682', 1, '大專組', '個人賽', NULL, '男子單打');
-
--- 檢查表格結構
--- DESCRIBE Users;
--- DESCRIBE Tournaments;
--- DESCRIBE Tournament_Participants;
--- DESCRIBE Team_Members;
--- DESCRIBE Judges;
--- DESCRIBE Tournament_Sessions;
--- DESCRIBE Sessions;
--- DESCRIBE Venues;
--- DESCRIBE Venue_Tables;
--- DESCRIBE Matches;
-
--- 檢查表格資料
--- SELECT * FROM Users;
--- SELECT * FROM Tournaments;
--- SELECT * FROM Tournament_Participants;
--- SELECT * FROM Team_Members;
--- SELECT * FROM Judges;
--- SELECT * FROM Tournament_Sessions;
--- SELECT * FROM Sessions;
--- SELECT * FROM Venues;
--- SELECT * FROM Venue_Tables;
--- SELECT * FROM Matches;
-
--- 刪除表格
--- DROP TABLE Matches;
--- DROP TABLE Venue_Tables;
--- DROP TABLE Venues;
--- DROP TABLE Tournament_Sessions;
--- DROP TABLE Sessions;
--- DROP TABLE Judges;
--- DROP TABLE Team_Members;
--- DROP TABLE Tournament_Participants;
--- DROP TABLE Tournaments;
--- DROP TABLE Users;
-
--- 刪除觸發器
--- DROP TRIGGER IF EXISTS after_match_insert;
--- DROP TRIGGER IF EXISTS after_match_delete;
