@@ -29,6 +29,7 @@
 ### 環境變數建置
 
 - 請於 frontend 資料夾底下建立一個名為.env.local 的 flie。
+
   ![本地端環境變數](https://github.com/Nody-Peng/NccuTT/blob/main/pictures/local%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8.jpg?raw=true)
 
 - 再來以下是環境變數的設定內容
