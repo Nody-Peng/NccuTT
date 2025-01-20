@@ -94,6 +94,15 @@ export default function Login() {
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+            {/* 忘記密碼按鈕 */}
+            <div className="text-right mt-2">
+              <a
+                href="/forgot-password"
+                className="text-sm text-blue-500 hover:underline"
+              >
+                忘記密碼？
+              </a>
+            </div>
           </div>
 
           {/* 登入按鈕 */}

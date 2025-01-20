@@ -17,6 +17,15 @@ CREATE TABLE IF NOT EXISTS Users (
     last_login TIMESTAMP DEFAULT NULL                  -- 最後登入時間
 );
 
+-- 忘記密碼
+CREATE TABLE password_reset_tokens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(100) NOT NULL,
+  token VARCHAR(255) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- 建立 Tournaments 表
 CREATE TABLE IF NOT EXISTS Tournaments (
     tournament_id INT NOT NULL AUTO_INCREMENT,  -- 比賽編號，自動遞增
