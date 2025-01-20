@@ -127,7 +127,8 @@ CREATE TABLE IF NOT EXISTS Venues (
     venue_id INT AUTO_INCREMENT PRIMARY KEY, -- 自動遞增的主鍵
     tournament_id INT NOT NULL, -- 參考 Tournaments 的 tournament_id
     venue VARCHAR(255) NOT NULL, 
-    FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id)
+    FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id),
+    FOREIGN KEY (venue) REFERENCES Tournaments(location)
 );
 
 -- 建立 Venue_Tables 表
@@ -135,7 +136,8 @@ CREATE TABLE IF NOT EXISTS Venue_Tables (
     table_id INT AUTO_INCREMENT PRIMARY KEY, -- 自動遞增的主鍵
     venue_id INT NOT NULL, -- 參考 Venues 的 venue_id
     table_number INT NOT NULL, -- 桌號
-    FOREIGN KEY (venue_id) REFERENCES Venues(venue_id) -- venue_id 外鍵約束
+    FOREIGN KEY (venue_id) REFERENCES Venues(venue_id), -- venue_id 外鍵約束
+    FOREIGN KEY (table_number) REFERENCES Tournaments(num_of_table)
 );
 
 -- 建立 Matches 表
