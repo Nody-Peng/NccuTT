@@ -140,11 +140,11 @@ export default function TeamForm() {
       <div className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-md relative">
         {/* 返回按鈕 */}
         <button
-          onClick={() => router.back()} // 返回上一頁
-          className="absolute top-4 left-4 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          onClick={() => router.back()}
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           aria-label="返回"
         >
-          <span className="text-xl font-bold">{`< 返回`}</span>
+          返回
         </button>
 
         {/* 報名類別下拉選單 */}

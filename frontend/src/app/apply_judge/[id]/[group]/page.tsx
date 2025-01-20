@@ -115,12 +115,13 @@ export default function IndividualForm() {
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md relative">
         {/* 返回按鈕 */}
         <button
-          onClick={() => router.back()} // 返回上一頁
-          className="absolute top-4 left-4 z-10 flex items-center justify-center px-4 h-10 bg-transparent text-gray-600 rounded-full hover:bg-gray-200 hover:text-gray-800 transition-transform transform hover:scale-105"
+          onClick={() => router.back()}
+          className="absolute top-2 left-2 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           aria-label="返回"
         >
-          <span className="text-xl font-bold">{`< 返回`}</span>
+          返回
         </button>
+
         {/* 報名活動資訊 */}
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">
@@ -227,7 +228,9 @@ export default function IndividualForm() {
 
           {/* 過敏原 */}
           <div>
-            <label className="block text-gray-700 mb-1">請問您是否有任何食物過敏？如果有，請列出過敏原（例如：花生、牛奶、蛋）。</label>
+            <label className="block text-gray-700 mb-1">
+              請問您是否有任何食物過敏？如果有，請列出過敏原（例如：花生、牛奶、蛋）。
+            </label>
             <input
               type="text"
               name="allergens"
