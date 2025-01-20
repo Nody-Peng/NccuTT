@@ -1,13 +1,9 @@
 # 誰敢跟我桌隊
 
----
-
 作者: 彭宗淳、林佳瑢
 ![誰敢跟我桌隊](https://github.com/Nody-Peng/NccuTT/blob/main/frontend/public/nccuTT_home.png?raw=true)
 
 # 系統簡介
-
----
 
 - 「誰敢跟我桌隊」是一個專為桌球賽事設計的管理系統，旨在提供主辦方與參賽方一個高效的平台來完成比賽報名、賽程發布以及賽程安排。此外，系統中設有一個 Admin 管理員角色，負責擁有最高權限，可用於管理用戶的權限與系統內的操作權限。
 
@@ -23,8 +19,6 @@
   2. 調整賽事參數與平台設置。
 
 # 環境建置
-
----
 
 ### 環境變數建置
 
@@ -113,8 +107,6 @@ EMAIL_PASS=your-email-password
     - 格式：應用程式密碼，不能是電子郵件的普通登入密碼。
     - 如何獲取：如果使用 Gmail，需啟用「兩步驟驗證」並生成應用程式密碼。
 
----
-
 ## 前端頁面設置
 
 #### 需求
@@ -149,8 +141,6 @@ EMAIL_PASS=your-email-password
 
    安裝完成後，您就已完成前端設置!
 
----
-
 ## 後端 MySQL 設置
 
 1.  **啟動 MySQL Workbench**
@@ -177,8 +167,6 @@ EMAIL_PASS=your-email-password
       ```
     - 如果資料庫無法正常運行，檢查 MySQL 的啟動狀態，並確認 .env 文件中的資料庫參數正確。
 
----
-
 ## 啟動專案
 
 完成上述步驟後，按以下方式啟動專案：
@@ -200,4 +188,17 @@ EMAIL_PASS=your-email-password
    - 帳號：`admin@admin.admin`
    - 密碼：`nccuTT`
 
----
+# Contributors
+
+本專案由以下開發者共同完成，感謝他們的辛勤付出（按完成比例排序）：
+
+| 貢獻者     | GitHub 使用者名稱                         | 貢獻比例 |
+| ---------- | ----------------------------------------- | -------- |
+| **彭宗淳** | [Nody-Peng](https://github.com/Nody-Peng) | 35%      |
+| **林佳瑢** | [CJuuuuuuu](https://github.com/CJuuuuuuu) | 35%      |
+| **林可婷** | [Cora2003](https://github.com/Cora2003)   | 15%      |
+| **黃和謙** | [hochienH](https://github.com/hochienH)   | 15%      |
+
+### 說明
+
+- 本專案的開發包括前端設計、後端邏輯開發、資料庫建置以及測試部署等多個環節，以上比例為大致完成貢獻度的分配。
