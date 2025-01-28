@@ -124,11 +124,10 @@ CREATE TABLE IF NOT EXISTS Tournament_Sessions (
 
 -- 建立 Venues 表
 CREATE TABLE IF NOT EXISTS Venues (
-    venue_id INT AUTO_INCREMENT PRIMARY KEY, -- 自動遞增的主鍵
-    tournament_id INT NOT NULL, -- 參考 Tournaments 的 tournament_id
-    venue VARCHAR(255) NOT NULL, 
-    FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id),
-    FOREIGN KEY (venue) REFERENCES Tournaments(location)
+    venue_id INT AUTO_INCREMENT PRIMARY KEY, -- Auto-incrementing primary key
+    tournament_id INT NOT NULL, -- References Tournaments' tournament_id
+    venue VARCHAR(255) NOT NULL, -- References Tournaments' location
+    FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id)
 );
 
 -- 建立 Venue_Tables 表
@@ -159,8 +158,6 @@ CREATE TABLE IF NOT EXISTS Matches (
 
   UNIQUE KEY unique_table_session (table_id, session_id),
   FOREIGN KEY (tournament_id) REFERENCES Tournaments(tournament_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (division) REFERENCES Tournament_Participants(division) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (event_type) REFERENCES Tournament_Participants(event_type) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (player1_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (player2_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (judge_id) REFERENCES Tournament_Participants(register_id) ON DELETE CASCADE ON UPDATE CASCADE,
