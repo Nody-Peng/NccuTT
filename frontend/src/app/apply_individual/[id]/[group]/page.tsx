@@ -108,7 +108,8 @@ export default function IndividualForm() {
         alert("報名成功！");
         router.push("/profile"); // 導航到成功頁面
       } else {
-        alert("報名失敗，請稍後再試。");
+        const errorData = await response.json();
+        alert(`報名失敗：${errorData.message || "請稍後再試。"}`);
       }
     } catch (error) {
       console.error("Error submitting form:", error);

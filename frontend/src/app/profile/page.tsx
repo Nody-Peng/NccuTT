@@ -24,7 +24,7 @@ export default function Profile() {
           return;
         }
         if (!res.ok) {
-          throw new Error("Failed to fetch profile data");
+          alert("取得使用者資料失敗，請重新登入");
         }
         const data = await res.json();
         setUserInfo(data.user);
@@ -64,10 +64,10 @@ export default function Profile() {
         method: "DELETE",
       });
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "取消報名失敗");
-      }
+      // if (!res.ok) {
+      //   const errorData = await res.json();
+      //   throw new Error(errorData.error || "取消報名失敗");
+      // }
 
       // 成功後從前端狀態中移除該報名資料
       setRegistrations((prev) =>
@@ -115,6 +115,7 @@ export default function Profile() {
         )
       );
       alert("狀態更新成功！");
+      window.location.reload();
     } catch (err) {
       console.error("更新失敗：", err);
       alert("更新失敗，請稍後再試");
@@ -129,7 +130,7 @@ export default function Profile() {
         method: "POST",
       });
 
-      if (!res.ok) throw new Error("登出失敗，請稍後再試");
+      // if (!res.ok) throw new Error("登出失敗，請稍後再試");
 
       // 登出成功，導回首頁
       window.location.href = "/";
@@ -148,7 +149,7 @@ export default function Profile() {
 
       const data = await res.json();
 
-      if (!res.ok) throw new Error(data.message || "申請失敗，請稍後再試");
+      // if (!res.ok) throw new Error(data.message || "申請失敗，請稍後再試");
 
       alert(data.message);
     } catch (error) {

@@ -59,9 +59,9 @@ const SearchCompetition = () => {
             `/api/competition_schedule/publish/${id}?division=${competition.division}`
           );
 
-          if (!res.ok) {
-            throw new Error(`查詢 ${competition.division} 失敗`);
-          }
+          // if (!res.ok) {
+          //   throw new Error(`查詢 ${competition.division} 失敗`);
+          // }
 
           const data = await res.json();
 
