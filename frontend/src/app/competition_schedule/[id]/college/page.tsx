@@ -78,7 +78,7 @@ const CompetitionCollege = () => {
         const checkData = await checkRes.json();
   
         if (checkData.error) {
-          throw new Error(checkData.error);
+          alert(`資料檢查失敗：${checkData.error}`);
         }
   
         // 更新發布狀態
@@ -118,11 +118,11 @@ const CompetitionCollege = () => {
           setCommonInfo(data.data.info);
         }
       } catch (err) {
-        console.error("錯誤：", err);
+        // console.error("錯誤：", err);
   
         if (!isCancelled) {
           // 🚨 顯示錯誤訊息後返回上一頁
-          alert(`資料載入失敗：${err.message}`);
+          // alert(`資料載入失敗：${err.message}`);
           router.back();  // ⬅️ 回到上一頁
         }
       } finally {
