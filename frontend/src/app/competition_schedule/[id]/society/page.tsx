@@ -222,6 +222,14 @@ const CompetitionSociety = () => {
 
   return (
     <div className="min-h-screen p-6 relative">
+      {/* 返回按鈕 */}
+      <button
+        onClick={() => router.back()}
+        className="absolute top-8 left-4 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
+        aria-label="返回"
+      >
+        返回
+      </button>
       {/* 選擇 單打/雙打/團體 */}
       <div className="flex justify-center space-x-6 mb-6 mt-16">
         {Object.keys(categoryEnum).map((category) => (

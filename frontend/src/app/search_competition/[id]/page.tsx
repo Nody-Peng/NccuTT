@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // ✅ 賽程卡片元件（動態控制是否可點擊）
 const CompetitionCard = ({ title, description, link, isPublished }) => {
@@ -29,6 +30,7 @@ const CompetitionCard = ({ title, description, link, isPublished }) => {
 // ✅ 查看賽程頁面
 const SearchCompetition = () => {
   const { id } = useParams(); // 取得比賽 ID
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [publishStatus, setPublishStatus] = useState({}); // ✅ 儲存每個組別的發布狀態
 
@@ -88,7 +90,16 @@ const SearchCompetition = () => {
   }, [id]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen relative flex flex-col items-center justify-center">
+      {/* 返回按鈕 */}
+      <button
+        onClick={() => router.back()}
+        className="absolute top-8 left-4 z-10 flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 font-bold rounded-full shadow-md hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
+        aria-label="返回"
+      >
+        返回
+      </button>
+
       <div className="p-12 w-full max-w-6xl">
         <h1 className="text-3xl font-bold mb-6 text-center">查看賽程</h1>
 
