@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Users (
 );
 
 -- 忘記密碼
-CREATE TABLE password_reset_tokens (
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(100) NOT NULL,
   token VARCHAR(255) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Team_Members (
 );
 
 -- 修改 Judges 表
-CREATE TABLE Judges (
+CREATE TABLE IF NOT EXISTS Judges (
     judge_id INT PRIMARY KEY, -- 對應 Tournament_Participants 的 register_id
     dietary_preference ENUM('葷食', '素食') NOT NULL, -- 飲食習慣，限制為 "葷食" 或 "素食"
     allergens VARCHAR(255), -- 過敏原（以逗號分隔）
